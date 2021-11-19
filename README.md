@@ -2,6 +2,10 @@
 
 [Syed Waqas Zamir](https://scholar.google.es/citations?user=WNGPkVQAAAAJ&hl=en), [Aditya Arora](https://adityac8.github.io/), [Salman Khan](https://salman-h-khan.github.io/), [Munawar Hayat](https://scholar.google.com/citations?user=Mx8MbWYAAAAJ&hl=en), [Fahad Shahbaz Khan](https://scholar.google.es/citations?user=zvaeYnUAAAAJ&hl=en), and [Ming-Hsuan Yang](https://scholar.google.com/citations?user=p9-ohHsAAAAJ&hl=en)
 
+
+**Paper**: https://arxiv.org/abs/2111.09881
+
+
 ## Testing codes and pre-trained models will be released on Nov 22nd!
 
 <hr />
@@ -21,20 +25,20 @@
 
 <hr />
 
-<strong>Image Deblurring</strong> results. Our Restormer is trained only on the GoPro dataset and directly applied to the HIDE and RealBlur benchmark datasets.
+<strong>Single-Image Motion Deblurring</strong> results. Our Restormer is trained only on the GoPro dataset and directly applied to the HIDE and RealBlur benchmark datasets.
 
 <img src = "https://i.imgur.com/htagDSl.png" width="500"> 
 
 <hr />
 
-<strong>Dual-Pixel Defocus Deblurring</strong> comparisons on the DPDD testset (containing 37 indoor and 39 outdoor scenes). **S**: single-image defocus
+<strong>Defocus Deblurring</strong> comparisons on the DPDD testset (containing 37 indoor and 39 outdoor scenes). **S**: single-image defocus
 deblurring. **D**: dual-pixel defocus deblurring.
 
 <img src = "https://i.imgur.com/sfKnLG2.png"> 
 
 <hr />
 
-<b>Gaussian Denoising</b> comparisons for two categories of methods. Top super row: learning a single model to handle various noise levels. Bottom super row: training a separate model for each noise level.
+<b>Gaussian Image Denoising</b> comparisons for two categories of methods. Top super row: learning a single model to handle various noise levels. Bottom super row: training a separate model for each noise level.
 
 <table>
   <tr>
@@ -47,8 +51,9 @@ deblurring. **D**: dual-pixel defocus deblurring.
   </tr>
 </table>
 
-<b>RealDenoising</b> on SIDD and DND datasets. ∗ denotes methods using additional training data. Our Restormer is
+<b>Real Image Denoising</b> on SIDD and DND datasets. ∗ denotes methods using additional training data. Our Restormer is
 trained only on the SIDD images and directly tested on DND.
 
 <img src = "https://i.imgur.com/6v5PRxj.png">
+
 
