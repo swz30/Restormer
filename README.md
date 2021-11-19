@@ -56,13 +56,6 @@ trained only on the SIDD images and directly tested on DND.
 
 <img src = "https://i.imgur.com/6v5PRxj.png">
 
-@article{ba2016layer,
-  title={Layer normalization},
-  author={Ba, Jimmy Lei and Kiros, Jamie Ryan and Hinton, Geoffrey E},
-  journal={arXiv:1607.06450},
-  year={2016}
-}
-
 
 ## Citation
 If you use Restormer, please consider citing:
