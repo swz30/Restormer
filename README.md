@@ -41,7 +41,7 @@ For installing, follow these intructions
 conda create -n pytorch181 python=3.7
 conda activate pytorch181
 conda install pytorch=1.8 torchvision cudatoolkit=10.2 -c pytorch
-pip install matplotlib scikit-image opencv-python yacs joblib natsort h5py tqdm
+pip install matplotlib scikit-learn scikit-image opencv-python yacs joblib natsort h5py tqdm
 ```
 
 ## Results
