@@ -18,6 +18,18 @@
 
 <img src = "https://i.imgur.com/ulLoEig.png"> 
 
+## Installation
+
+The model is built in PyTorch 1.8.1 and tested on Ubuntu 16.04 environment (Python3.7, CUDA10.2, cuDNN7.6).
+
+For installing, follow these intructions
+```
+conda create -n pytorch181 python=3.7
+conda activate pytorch181
+conda install pytorch=1.8 torchvision cudatoolkit=10.2 -c pytorch
+pip install matplotlib scikit-image opencv-python yacs joblib natsort h5py tqdm
+```
+
 ## Results
 
 <strong>Image Deraining</strong> comparisons on the Test100, Rain100H, Rain100L, Test1200, and Test2800 testsets. You can download Restormer's predictions from this Google Drive [link](https://drive.google.com/drive/folders/1HcLc6v03q_sP_lRPcl7_NJmlB9f48TWU?usp=sharing)
