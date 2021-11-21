@@ -6,7 +6,8 @@
 **Paper**: https://arxiv.org/abs/2111.09881
 
 
-## Testing codes and pre-trained models will be released on Nov 22nd!
+#### News
+- Testing codes and pre-trained models are released!
 
 <hr />
 
