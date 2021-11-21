@@ -20,26 +20,26 @@
 
 ## Results
 
-<strong>Image Deraining</strong> comparisons on the Test100, Rain100H, Rain100L, Test1200, and Test2800 testsets.
+<strong>Image Deraining</strong> comparisons on the Test100, Rain100H, Rain100L, Test1200, and Test2800 testsets. You can download Restormer's predictions from this Google Drive [link](https://drive.google.com/drive/folders/1HcLc6v03q_sP_lRPcl7_NJmlB9f48TWU?usp=sharing)
 
 <img src = "https://i.imgur.com/mMoqYJi.png"> 
 
 <hr />
 
-<strong>Single-Image Motion Deblurring</strong> results. Our Restormer is trained only on the GoPro dataset and directly applied to the HIDE and RealBlur benchmark datasets.
+<strong>Single-Image Motion Deblurring</strong> results. Our Restormer is trained only on the GoPro dataset and directly applied to the HIDE and RealBlur benchmark datasets. You can download Restormer's predictions from this Google Drive [link](https://drive.google.com/drive/folders/1qla3HEOuGapv1hqBwXEMi2USFPB2qmx_?usp=sharing)
 
 <img src = "https://i.imgur.com/htagDSl.png" width="500"> 
 
 <hr />
 
 <strong>Defocus Deblurring</strong> comparisons on the DPDD testset (containing 37 indoor and 39 outdoor scenes). **S**: single-image defocus
-deblurring. **D**: dual-pixel defocus deblurring.
+deblurring. **D**: dual-pixel defocus deblurring. You can download Restormer's predictions from this Google Drive [link](https://drive.google.com/drive/folders/1V_pLc9CZFe4vN7c4SxtXsXKi2FnLUt98?usp=sharing)
 
 <img src = "https://i.imgur.com/sfKnLG2.png"> 
 
 <hr />
 
-<b>Gaussian Image Denoising</b> comparisons for two categories of methods. Top super row: learning a single model to handle various noise levels. Bottom super row: training a separate model for each noise level.
+<b>Gaussian Image Denoising</b> comparisons for two categories of methods. Top super row: learning a single model to handle various noise levels. Bottom super row: training a separate model for each noise level. You can download Restormer's predictions from this Google Drive [link](https://drive.google.com/drive/folders/1rEAHUBkA9uCe9Q0AzI5zkYxePSgxYDEG?usp=sharing)
 
 <table>
   <tr>
@@ -53,7 +53,7 @@ deblurring. **D**: dual-pixel defocus deblurring.
 </table>
 
 <b>Real Image Denoising</b> on SIDD and DND datasets. ∗ denotes methods using additional training data. Our Restormer is
-trained only on the SIDD images and directly tested on DND.
+trained only on the SIDD images and directly tested on DND. You can download Restormer's predictions from this Google Drive [link](https://drive.google.com/drive/folders/1rEAHUBkA9uCe9Q0AzI5zkYxePSgxYDEG?usp=sharing)
 
 <img src = "https://i.imgur.com/6v5PRxj.png">
 
