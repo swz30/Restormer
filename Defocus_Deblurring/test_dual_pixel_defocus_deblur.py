@@ -30,8 +30,9 @@ parser.add_argument('--input_dir', default='./Datasets/DPDD/', type=str, help='D
 parser.add_argument('--result_dir', default='./results/Dual_Pixel_Defocus_Deblurring/', type=str, help='Directory for results')
 parser.add_argument('--weights', default='./pretrained_models/dual_pixel_defocus_deblurring.pth', type=str, help='Path to weights')
 parser.add_argument('--save_images', action='store_true', help='Save denoised images in result directory')
-
+parser.add_argument('--resize', type=int, help='Resizes images by percentage as scalar')
 args = parser.parse_args()
+
 
 model_restoration = Restormer(inp_channels=6, dual_pixel_task=True)
 
@@ -56,10 +57,18 @@ outdoor_labels = np.load('./Datasets/DPDD/outdoor_labels.npy')
 psnr, mae, ssim, pips = [], [], [], []
 with torch.no_grad():
     for fileL, fileR, fileC in tqdm(zip(filesL, filesR, filesC), total=len(filesC)):
-
-        imgL = np.float32(utils.load_img16(fileL))/65535.
-        imgR = np.float32(utils.load_img16(fileR))/65535.
-        imgC = np.float32(utils.load_img16(fileC))/65535.
+        if args.resize:
+            imgL = utils.resize(utils.load_img(fileL),pct=args.resize)
+            imgL = np.float32(imgL)/65535.
+            imgR = utils.resize(utils.load_img(fileR),pct=args.resize)
+            imgR = np.float32(imgR)/65535.
+            imgC = utils.resize(utils.load_img(fileC),pct=args.resize)
+            imgC = np.float32(imgC)/65535.
+            print(f'\nImage loaded and resized to {args.resize}% size')
+        else:
+            imgL = np.float32(utils.load_img16(fileL))/65535.
+            imgR = np.float32(utils.load_img16(fileR))/65535.
+            imgC = np.float32(utils.load_img16(fileC))/65535.
 
         patchC = torch.from_numpy(imgC).unsqueeze(0).permute(0,3,1,2).cuda()
         patchL = torch.from_numpy(imgL).unsqueeze(0).permute(0,3,1,2)

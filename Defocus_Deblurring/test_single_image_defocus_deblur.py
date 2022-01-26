@@ -58,13 +58,12 @@ outdoor_labels = np.load('./Datasets/DPDD/outdoor_labels.npy')
 psnr, mae, ssim, pips = [], [], [], []
 with torch.no_grad():
     for fileI, fileC in tqdm(zip(filesI, filesC), total=len(filesC)):
-        print('__here__')
         if args.resize:
             imgI = utils.resize(utils.load_img(fileI),pct=args.resize)
             imgI = np.float32(imgI)/255.
             imgC = utils.resize(utils.load_img(fileC),pct=args.resize)
             imgC = np.float32(imgC)/255.
-            print(f'Images loaded and resized by {args.resize}.')
+            print(f'\nImage loaded and resized to {args.resize}% size')
         else:
             imgI = np.float32(utils.load_img(fileI))/255.
             imgC = np.float32(utils.load_img(fileC))/255.
@@ -80,7 +79,6 @@ with torch.no_grad():
         pips.append(alex(patchC, restored, normalize=True).item())
 
         restored = restored.cpu().detach().permute(0, 2, 3, 1).squeeze(0).numpy()
-        print('__here__')
         psnr.append(utils.PSNR(imgC, restored))
         mae.append(utils.MAE(imgC, restored))
         ssim.append(utils.SSIM(imgC, restored))
