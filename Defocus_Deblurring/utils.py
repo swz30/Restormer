@@ -25,6 +25,17 @@ def PSNR(img1, img2):
         return 100
     return 10 * math.log10(1 / mse_)
 
+def resize(img,pct=None):
+    print(type(pct))
+    scale_percent = 60 # percent of original size
+    width = int(img.shape[1] * pct / 100)
+    height = int(img.shape[0] * pct / 100)
+    dim = (width, height)
+    
+    # resize image
+    return cv2.resize(img, dim, interpolation = cv2.INTER_AREA)
+
+
 def SSIM(img1, img2):
     return metrics.structural_similarity(img1, img2, data_range=1, multichannel=True)
 

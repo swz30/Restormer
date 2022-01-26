@@ -30,9 +30,12 @@ parser.add_argument('--input_dir', default='./Datasets/DPDD/', type=str, help='D
 parser.add_argument('--result_dir', default='./results/Single_Image_Defocus_Deblurring/', type=str, help='Directory for results')
 parser.add_argument('--weights', default='./pretrained_models/single_image_defocus_deblurring.pth', type=str, help='Path to weights')
 parser.add_argument('--save_images', action='store_true', help='Save denoised images in result directory')
-
+parser.add_argument('--resize', type=int, help='Resizes images by percentage as scalar')
 args = parser.parse_args()
 
+print(args.resize)
+if args.resize:
+    print('there is an argumet passed for resized')
 model_restoration = Restormer()
 
 checkpoint = torch.load(args.weights)
@@ -55,9 +58,19 @@ outdoor_labels = np.load('./Datasets/DPDD/outdoor_labels.npy')
 psnr, mae, ssim, pips = [], [], [], []
 with torch.no_grad():
     for fileI, fileC in tqdm(zip(filesI, filesC), total=len(filesC)):
+        print('__here__')
+        if args.resize:
+            imgI = utils.resize(utils.load_img(fileI),pct=args.resize)
+            imgI = np.float32(imgI)/255.
+            imgC = utils.resize(utils.load_img(fileC),pct=args.resize)
+            imgC = np.float32(imgC)/255.
+            print(f'Images loaded and resized by {args.resize}.')
+        else:
+            imgI = np.float32(utils.load_img(fileI))/255.
+            imgC = np.float32(utils.load_img(fileC))/255.
 
-        imgI = np.float32(utils.load_img(fileI))/255.
-        imgC = np.float32(utils.load_img(fileC))/255.
+       
+        
 
         patchI = torch.from_numpy(imgI).unsqueeze(0).permute(0,3,1,2).cuda()
         patchC = torch.from_numpy(imgC).unsqueeze(0).permute(0,3,1,2).cuda()
@@ -67,7 +80,7 @@ with torch.no_grad():
         pips.append(alex(patchC, restored, normalize=True).item())
 
         restored = restored.cpu().detach().permute(0, 2, 3, 1).squeeze(0).numpy()
-
+        print('__here__')
         psnr.append(utils.PSNR(imgC, restored))
         mae.append(utils.MAE(imgC, restored))
         ssim.append(utils.SSIM(imgC, restored))
