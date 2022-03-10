@@ -46,42 +46,42 @@ See [INSTALL.md](INSTALL.md) for the installation of dependencies required to ru
 
 Training and Testing instructions for Deraining, Motion Deblurring, Defocus Deblurring, and Denoising are provided in their respective directories. Here is a summary table containing hyperlinks for easy navigation:
 
-<table style="text-align:center;">
+<table>
   <tr>
-    <th><span style="font-weight:bold">Task</span></th>
-    <th><span style="font-weight:bold">Training Instructions</span></th>
-    <th>Testing Instructions</th>
-    <th>Restormer's Visual Results</th>
+    <th align="left">Task</th>
+    <th align="center">Training Instructions</th>
+    <th align="center">Testing Instructions</th>
+    <th align="center">Restormer's Visual Results</th>
   </tr>
   <tr>
-    <td>Deraining</td>
-    <td><a href="Deraining/README.md#training">Link</a></td>
-    <td><a href="Deraining/README.md#evaluation">Link</a></td>
-    <td><a href="https://drive.google.com/drive/folders/1HcLc6v03q_sP_lRPcl7_NJmlB9f48TWU?usp=sharing">Download</a></td>
+    <td align="left">Deraining</td>
+    <td align="center"><a href="Deraining/README.md#training">Link</a></td>
+    <td align="center"><a href="Deraining/README.md#evaluation">Link</a></td>
+    <td align="center"><a href="https://drive.google.com/drive/folders/1HcLc6v03q_sP_lRPcl7_NJmlB9f48TWU?usp=sharing">Download</a></td>
   </tr>
   <tr>
     <td>Motion Deblurring</td>
-    <td><a href="Motion_Deblurring/README.md#training">Link</a></td>
-    <td><a href="Motion_Deblurring/README.md#evaluation">Link</a></td>
-    <td><a href="https://drive.google.com/drive/folders/1qla3HEOuGapv1hqBwXEMi2USFPB2qmx_?usp=sharing">Download</a></td>
+    <td align="center"><a href="Motion_Deblurring/README.md#training">Link</a></td>
+    <td align="center"><a href="Motion_Deblurring/README.md#evaluation">Link</a></td>
+    <td align="center"><a href="https://drive.google.com/drive/folders/1qla3HEOuGapv1hqBwXEMi2USFPB2qmx_?usp=sharing">Download</a></td>
   </tr>
   <tr>
     <td>Defocus Deblurring</td>
-    <td><a href="Defocus_Deblurring/README.md#training">Link</a></td>
-    <td><a href="Defocus_Deblurring/README.md#evaluation">Link</a></td>
-    <td><a href="https://drive.google.com/drive/folders/1V_pLc9CZFe4vN7c4SxtXsXKi2FnLUt98?usp=sharing">Download</a></td>
+    <td align="center"><a href="Defocus_Deblurring/README.md#training">Link</a></td>
+    <td align="center"><a href="Defocus_Deblurring/README.md#evaluation">Link</a></td>
+    <td align="center"><a href="https://drive.google.com/drive/folders/1V_pLc9CZFe4vN7c4SxtXsXKi2FnLUt98?usp=sharing">Download</a></td>
   </tr>
   <tr>
     <td>Gaussian Denoising</td>
-    <td><a href="Denoising/README.md#training">Link</a></td>
-    <td><a href="Denoising/README.md#evaluation">Link</a></td>
-    <td><a href="https://drive.google.com/drive/folders/1rEAHUBkA9uCe9Q0AzI5zkYxePSgxYDEG?usp=sharing">Download</a></td>
+    <td align="center"><a href="Denoising/README.md#training">Link</a></td>
+    <td align="center"><a href="Denoising/README.md#evaluation">Link</a></td>
+    <td align="center"><a href="https://drive.google.com/drive/folders/1rEAHUBkA9uCe9Q0AzI5zkYxePSgxYDEG?usp=sharing">Download</a></td>
   </tr>
   <tr>
     <td>Real Denoising</td>
-    <td><a href="Denoising/README.md#training-1">Link</a></td>
-    <td><a href="Denoising/README.md#evaluation-1">Link</a></td>
-    <td><a href="https://drive.google.com/file/d/1CsEiN6R0hlmEoSTyy48nnhfF06P5aRR7/view?usp=sharing">Download</a></td>
+    <td align="center"><a href="Denoising/README.md#training-1">Link</a></td>
+    <td align="center"><a href="Denoising/README.md#evaluation-1">Link</a></td>
+    <td align="center"><a href="https://drive.google.com/file/d/1CsEiN6R0hlmEoSTyy48nnhfF06P5aRR7/view?usp=sharing">Download</a></td>
   </tr>
 </table>
 
