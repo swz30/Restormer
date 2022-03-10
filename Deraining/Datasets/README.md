@@ -1,9 +1,23 @@
-Download Rain testsets from [here](https://drive.google.com/drive/folders/1PDWggNh8ylevFmrjo-JEvlmqsDlWWvZs?usp=sharing) and place them in this directory.  Your directory structure should look like this
+For training and testing, your directory structure should look like this
   
-  `Datasets` <br/>
+ `Datasets` <br/>
+ `├──train`  <br/>
+     `└──Rain13K`   <br/>
+          `├──input`   <br/>
+          `└──target`   <br/>
  `└──test`  <br/>
      `├──Test100`   <br/>
+          `├──input`   <br/>
+          `└──target`   <br/>
      `├──Rain100H`  <br/>
+          `├──input`   <br/>
+          `└──target`   <br/>
      `├──Rain100L`  <br/>
+          `├──input`   <br/>
+          `└──target`   <br/>
      `├──Test1200`  <br/>
-     `└──Test2800`
+          `├──input`   <br/>
+          `└──target`   <br/>
+     `└──Test2800`<br/>
+          `├──input`   <br/>
+          `└──target` 

@@ -11,7 +11,7 @@ import torch.nn as nn
 import torch
 import torch.nn.functional as F
 
-from Restormer import Restormer
+from basicsr.models.archs.restormer_arch import Restormer
 from skimage import img_as_ubyte
 from natsort import natsorted
 from glob import glob
@@ -28,6 +28,23 @@ parser.add_argument('--sigmas', default='15,25,50', type=str, help='Sigma values
 
 args = parser.parse_args()
 
+####### Load yaml #######
+if args.model_type == 'blind':
+    yaml_file = 'Options/GaussianColorDenoising_Restormer.yml'
+else:
+    yaml_file = f'Options/GaussianColorDenoising_RestormerSigma{args.sigmas}.yml'
+import yaml
+
+try:
+    from yaml import CLoader as Loader
+except ImportError:
+    from yaml import Loader
+
+x = yaml.load(open(yaml_file, mode='r'), Loader=Loader)
+
+s = x['network_g'].pop('type')
+##########################
+
 sigmas = np.int_(args.sigmas.split(','))
 
 factor = 8
@@ -36,7 +53,7 @@ datasets = ['CBSD68', 'Kodak', 'McMaster','Urban100']
 
 for sigma_test in sigmas:
     print("Compute results for noise level",sigma_test)
-    model_restoration = Restormer(LayerNorm_type='BiasFree')
+    model_restoration = Restormer(**x['network_g'])
     if args.model_type == 'blind':
         weights = args.weights+'_blind.pth'
     else:
@@ -53,6 +70,9 @@ for sigma_test in sigmas:
     for dataset in datasets:
         inp_dir = os.path.join(args.input_dir, dataset)
         files = natsorted(glob(os.path.join(inp_dir, '*.png')) + glob(os.path.join(inp_dir, '*.tif')))
+        result_dir_tmp = os.path.join(args.result_dir, args.model_type, dataset, str(sigma_test))
+        os.makedirs(result_dir_tmp, exist_ok=True)
+
         with torch.no_grad():
             for file_ in tqdm(files):
                 torch.cuda.ipc_collect()
@@ -79,7 +99,5 @@ for sigma_test in sigmas:
 
                 restored = torch.clamp(restored,0,1).cpu().detach().permute(0, 2, 3, 1).squeeze(0).numpy()
 
-                result_dir_tmp = os.path.join(args.result_dir, args.model_type, dataset, str(sigma_test))
-                os.makedirs(result_dir_tmp, exist_ok=True)
                 save_file = os.path.join(result_dir_tmp, os.path.split(file_)[-1])
                 utils.save_img(save_file, img_as_ubyte(restored))

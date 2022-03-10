@@ -13,7 +13,7 @@ import torch.nn as nn
 import torch
 
 from skimage import img_as_ubyte
-from Restormer import Restormer
+from basicsr.models.archs.restormer_arch import Restormer
 import cv2
 import utils
 from natsort import natsorted
@@ -26,14 +26,28 @@ alex = lpips.LPIPS(net='alex').cuda()
 
 parser = argparse.ArgumentParser(description='Single Image Defocus Deblurring using Restormer')
 
-parser.add_argument('--input_dir', default='./Datasets/DPDD/', type=str, help='Directory of validation images')
+parser.add_argument('--input_dir', default='./Datasets/test/DPDD/', type=str, help='Directory of validation images')
 parser.add_argument('--result_dir', default='./results/Single_Image_Defocus_Deblurring/', type=str, help='Directory for results')
 parser.add_argument('--weights', default='./pretrained_models/single_image_defocus_deblurring.pth', type=str, help='Path to weights')
 parser.add_argument('--save_images', action='store_true', help='Save denoised images in result directory')
 
 args = parser.parse_args()
 
-model_restoration = Restormer()
+####### Load yaml #######
+yaml_file = 'Options/DefocusDeblur_Single_8bit_Restormer.yml'
+import yaml
+
+try:
+    from yaml import CLoader as Loader
+except ImportError:
+    from yaml import Loader
+
+x = yaml.load(open(yaml_file, mode='r'), Loader=Loader)
+
+s = x['network_g'].pop('type')
+##########################
+
+model_restoration = Restormer(**x['network_g'])
 
 checkpoint = torch.load(args.weights)
 model_restoration.load_state_dict(checkpoint['params'])
@@ -46,11 +60,11 @@ result_dir = args.result_dir
 if args.save_images:
     os.makedirs(result_dir, exist_ok=True)
 
-filesI = natsorted(glob(os.path.join(args.input_dir, 'test_c', 'source', '*.png')))
-filesC = natsorted(glob(os.path.join(args.input_dir, 'test_c', 'target', '*.png')))
+filesI = natsorted(glob(os.path.join(args.input_dir, 'inputC', '*.png')))
+filesC = natsorted(glob(os.path.join(args.input_dir, 'target', '*.png')))
 
-indoor_labels  = np.load('./Datasets/DPDD/indoor_labels.npy')
-outdoor_labels = np.load('./Datasets/DPDD/outdoor_labels.npy')
+indoor_labels  = np.load('./Datasets/test/DPDD/indoor_labels.npy')
+outdoor_labels = np.load('./Datasets/test/DPDD/outdoor_labels.npy')
 
 psnr, mae, ssim, pips = [], [], [], []
 with torch.no_grad():

@@ -12,7 +12,7 @@ import torch.nn as nn
 import torch.nn.functional as F
 import utils
 
-from Restormer import Restormer
+from basicsr.models.archs.restormer_arch import Restormer
 from skimage import img_as_ubyte
 import h5py
 import scipy.io as sio
@@ -27,6 +27,20 @@ parser.add_argument('--save_images', action='store_true', help='Save denoised im
 
 args = parser.parse_args()
 
+####### Load yaml #######
+yaml_file = 'Options/RealDenoising_Restormer.yml'
+import yaml
+
+try:
+    from yaml import CLoader as Loader
+except ImportError:
+    from yaml import Loader
+
+x = yaml.load(open(yaml_file, mode='r'), Loader=Loader)
+
+s = x['network_g'].pop('type')
+##########################
+
 result_dir_mat = os.path.join(args.result_dir, 'mat')
 os.makedirs(result_dir_mat, exist_ok=True)
 
@@ -34,7 +48,7 @@ if args.save_images:
     result_dir_png = os.path.join(args.result_dir, 'png')
     os.makedirs(result_dir_png, exist_ok=True)
 
-model_restoration = Restormer(LayerNorm_type='BiasFree')
+model_restoration = Restormer(**x['network_g'])
 
 checkpoint = torch.load(args.weights)
 model_restoration.load_state_dict(checkpoint['params'])

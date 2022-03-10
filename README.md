@@ -5,15 +5,17 @@
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/restormer-efficient-transformer-for-high/single-image-deraining-on-test1200)](https://paperswithcode.com/sota/single-image-deraining-on-test1200?p=restormer-efficient-transformer-for-high)
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/restormer-efficient-transformer-for-high/single-image-deraining-on-test2800)](https://paperswithcode.com/sota/single-image-deraining-on-test2800?p=restormer-efficient-transformer-for-high)
 
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/restormer-efficient-transformer-for-high/image-denoising-on-sidd)](https://paperswithcode.com/sota/image-denoising-on-sidd?p=restormer-efficient-transformer-for-high)
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/restormer-efficient-transformer-for-high/image-denoising-on-dnd)](https://paperswithcode.com/sota/image-denoising-on-dnd?p=restormer-efficient-transformer-for-high)
+
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/restormer-efficient-transformer-for-high/deblurring-on-gopro)](https://paperswithcode.com/sota/deblurring-on-gopro?p=restormer-efficient-transformer-for-high)
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/restormer-efficient-transformer-for-high/deblurring-on-hide-trained-on-gopro)](https://paperswithcode.com/sota/deblurring-on-hide-trained-on-gopro?p=restormer-efficient-transformer-for-high)
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/restormer-efficient-transformer-for-high/deblurring-on-realblur-r-trained-on-gopro)](https://paperswithcode.com/sota/deblurring-on-realblur-r-trained-on-gopro?p=restormer-efficient-transformer-for-high)
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/restormer-efficient-transformer-for-high/deblurring-on-realblur-j-trained-on-gopro)](https://paperswithcode.com/sota/deblurring-on-realblur-j-trained-on-gopro?p=restormer-efficient-transformer-for-high)
 
-[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/restormer-efficient-transformer-for-high/image-denoising-on-sidd)](https://paperswithcode.com/sota/image-denoising-on-sidd?p=restormer-efficient-transformer-for-high)
-[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/restormer-efficient-transformer-for-high/image-denoising-on-dnd)](https://paperswithcode.com/sota/image-denoising-on-dnd?p=restormer-efficient-transformer-for-high)
 
-# Restormer: Efficient Transformer for High-Resolution Image Restoration
+
+# Restormer: Efficient Transformer for High-Resolution Image Restoration (CVPR 2022)
 
 [Syed Waqas Zamir](https://scholar.google.es/citations?user=WNGPkVQAAAAJ&hl=en), [Aditya Arora](https://adityac8.github.io/), [Salman Khan](https://salman-h-khan.github.io/), [Munawar Hayat](https://scholar.google.com/citations?user=Mx8MbWYAAAAJ&hl=en), [Fahad Shahbaz Khan](https://scholar.google.es/citations?user=zvaeYnUAAAAJ&hl=en), and [Ming-Hsuan Yang](https://scholar.google.com/citations?user=p9-ohHsAAAAJ&hl=en)
 
@@ -23,6 +25,8 @@
 **Supplementary**: [pdf](https://drive.google.com/file/d/13AgJJEjYRNrUuMWkiRWPo_19F6xCzgIV/view?usp=sharing)
 
 #### News
+- **March 10, 2022:** Training codes are released :fire:
+- **March 3, 2022:** Paper accepted at CVPR 2022 :tada: 
 - Testing codes and pre-trained models are released!
 
 <hr />
@@ -36,38 +40,80 @@
 
 ## Installation
 
-The model is built in PyTorch 1.8.1 and tested on Ubuntu 16.04 environment (Python3.7, CUDA10.2, cuDNN7.6).
+See [INSTALL.md](INSTALL.md) for the installation of dependencies required to run Restormer.
 
-For installing, follow these intructions
-```
-conda create -n pytorch181 python=3.7
-conda activate pytorch181
-conda install pytorch=1.8 torchvision cudatoolkit=10.2 -c pytorch
-pip install matplotlib scikit-learn scikit-image opencv-python yacs joblib natsort h5py tqdm
-```
+## Training and Evaluation
+
+Training and Testing instructions for Deraining, Motion Deblurring, Defocus Deblurring, and Denoising are provided in their respective directories. Here is a summary table containing hyperlinks for easy navigation:
+
+<table style="text-align:center;">
+  <tr>
+    <th><span style="font-weight:bold">Task</span></th>
+    <th><span style="font-weight:bold">Training Instructions</span></th>
+    <th>Testing Instructions</th>
+    <th>Restormer's Visual Results</th>
+  </tr>
+  <tr>
+    <td>Deraining</td>
+    <td><a href="Deraining/README.md#training">Link</a></td>
+    <td><a href="Deraining/README.md#evaluation">Link</a></td>
+    <td><a href="https://drive.google.com/drive/folders/1HcLc6v03q_sP_lRPcl7_NJmlB9f48TWU?usp=sharing">Download</a></td>
+  </tr>
+  <tr>
+    <td>Motion Deblurring</td>
+    <td><a href="Motion_Deblurring/README.md#training">Link</a></td>
+    <td><a href="Motion_Deblurring/README.md#evaluation">Link</a></td>
+    <td><a href="https://drive.google.com/drive/folders/1qla3HEOuGapv1hqBwXEMi2USFPB2qmx_?usp=sharing">Download</a></td>
+  </tr>
+  <tr>
+    <td>Defocus Deblurring</td>
+    <td><a href="Defocus_Deblurring/README.md#training">Link</a></td>
+    <td><a href="Defocus_Deblurring/README.md#evaluation">Link</a></td>
+    <td><a href="https://drive.google.com/drive/folders/1V_pLc9CZFe4vN7c4SxtXsXKi2FnLUt98?usp=sharing">Download</a></td>
+  </tr>
+  <tr>
+    <td>Gaussian Denoising</td>
+    <td><a href="Denoising/README.md#training">Link</a></td>
+    <td><a href="Denoising/README.md#evaluation">Link</a></td>
+    <td><a href="https://drive.google.com/drive/folders/1rEAHUBkA9uCe9Q0AzI5zkYxePSgxYDEG?usp=sharing">Download</a></td>
+  </tr>
+  <tr>
+    <td>Real Denoising</td>
+    <td><a href="Denoising/README.md#training-1">Link</a></td>
+    <td><a href="Denoising/README.md#evaluation-1">Link</a></td>
+    <td><a href="https://drive.google.com/file/d/1CsEiN6R0hlmEoSTyy48nnhfF06P5aRR7/view?usp=sharing">Download</a></td>
+  </tr>
+</table>
 
 ## Results
+Experiments are performed for different image processing tasks including, image deraining, single-image motion deblurring, defocus deblurring (both on single image and dual pixel data), and image denoising (both on Gaussian and real data). 
 
-<strong>Image Deraining</strong> comparisons on the Test100, Rain100H, Rain100L, Test1200, and Test2800 testsets. You can download Restormer's predictions from this Google Drive [link](https://drive.google.com/drive/folders/1HcLc6v03q_sP_lRPcl7_NJmlB9f48TWU?usp=sharing)
+<details>
+<summary><strong>Image Deraining</strong> (click to expand) </summary>
 
 <img src = "https://i.imgur.com/mMoqYJi.png"> 
+</details>
 
-<hr />
+<details>
+<summary><strong>Single-Image Motion Deblurring</strong> (click to expand) </summary>
 
-<strong>Single-Image Motion Deblurring</strong> results. Our Restormer is trained only on the GoPro dataset and directly applied to the HIDE and RealBlur benchmark datasets. You can download Restormer's predictions from this Google Drive [link](https://drive.google.com/drive/folders/1qla3HEOuGapv1hqBwXEMi2USFPB2qmx_?usp=sharing)
+<p align="center"><img src = "https://i.imgur.com/htagDSl.png" width="400"></p></details>
 
-<img src = "https://i.imgur.com/htagDSl.png" width="500"> 
+<details>
+<summary><strong>Defocus Deblurring</strong> (click to expand) </summary>
 
-<hr />
-
-<strong>Defocus Deblurring</strong> comparisons on the DPDD testset (containing 37 indoor and 39 outdoor scenes). **S**: single-image defocus
-deblurring. **D**: dual-pixel defocus deblurring. You can download Restormer's predictions from this Google Drive [link](https://drive.google.com/drive/folders/1V_pLc9CZFe4vN7c4SxtXsXKi2FnLUt98?usp=sharing)
+S: single-image defocus deblurring.
+D: dual-pixel defocus deblurring.
 
 <img src = "https://i.imgur.com/sfKnLG2.png"> 
+</details>
 
-<hr />
 
-<b>Gaussian Image Denoising</b> comparisons for two categories of methods. Top super row: learning a single model to handle various noise levels. Bottom super row: training a separate model for each noise level. You can download Restormer's predictions from this Google Drive [link](https://drive.google.com/drive/folders/1rEAHUBkA9uCe9Q0AzI5zkYxePSgxYDEG?usp=sharing)
+<details>
+<summary><strong>Gaussian Image Denoising</strong> (click to expand) </summary>
+
+Top super-row: learning a single model to handle various noise levels.
+Bottom super-row: training a separate model for each noise level.
 
 <table>
   <tr>
@@ -79,24 +125,30 @@ deblurring. **D**: dual-pixel defocus deblurring. You can download Restormer's p
     <td><p align="center"><b>Color</b></p></td>
   </tr>
 </table>
+</details>
 
-<b>Real Image Denoising</b> on SIDD and DND datasets. ∗ denotes methods using additional training data. Our Restormer is
-trained only on the SIDD images and directly tested on DND. You can download Restormer's predictions from this Google Drive [link](https://drive.google.com/drive/folders/1rEAHUBkA9uCe9Q0AzI5zkYxePSgxYDEG?usp=sharing)
+<details>
+<summary><strong>Real Image Denoising</strong> (click to expand) </summary>
 
 <img src = "https://i.imgur.com/6v5PRxj.png">
-
+</details>
 
 ## Citation
 If you use Restormer, please consider citing:
 
-    @article{Zamir2021Restormer,
+    @inproceedings{Zamir2021Restormer,
         title={Restormer: Efficient Transformer for High-Resolution Image Restoration}, 
         author={Syed Waqas Zamir and Aditya Arora and Salman Khan and Munawar Hayat 
                 and Fahad Shahbaz Khan and Ming-Hsuan Yang},
-        journal={ArXiv 2111.09881},
-        year={2021}
+        booktitle={CVPR},
+        year={2022}
     }
+
 
 ## Contact
 Should you have any question, please contact waqas.zamir@inceptioniai.org
+
+
+**Acknowledgment:** This code is based on the [BasicSR](https://github.com/xinntao/BasicSR) toolbox. 
+
 

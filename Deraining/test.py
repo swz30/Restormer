@@ -16,7 +16,7 @@ import utils
 
 from natsort import natsorted
 from glob import glob
-from Restormer import Restormer
+from basicsr.models.archs.restormer_arch import Restormer
 from skimage import img_as_ubyte
 from pdb import set_trace as stx
 
@@ -28,7 +28,21 @@ parser.add_argument('--weights', default='./pretrained_models/deraining.pth', ty
 
 args = parser.parse_args()
 
-model_restoration = Restormer()
+####### Load yaml #######
+yaml_file = 'Options/RealDenoising_Restormer.yml'
+import yaml
+
+try:
+    from yaml import CLoader as Loader
+except ImportError:
+    from yaml import Loader
+
+x = yaml.load(open(yaml_file, mode='r'), Loader=Loader)
+
+s = x['network_g'].pop('type')
+##########################
+
+model_restoration = Restormer(**x['network_g'])
 
 checkpoint = torch.load(args.weights)
 model_restoration.load_state_dict(checkpoint['params'])
