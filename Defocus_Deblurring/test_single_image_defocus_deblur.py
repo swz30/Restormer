@@ -87,7 +87,7 @@ with torch.no_grad():
         ssim.append(utils.SSIM(imgC, restored))
         if args.save_images:
             save_file = os.path.join(result_dir, os.path.split(fileC)[-1])
-            restored = np.uint16((restored*255).round())
+            restored = np.uint8((restored*255).round())
             utils.save_img(save_file, restored)
 
 psnr, mae, ssim, pips = np.array(psnr), np.array(mae), np.array(ssim), np.array(pips)
