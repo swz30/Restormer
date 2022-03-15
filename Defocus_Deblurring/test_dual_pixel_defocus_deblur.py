@@ -1,7 +1,7 @@
 """
-## Multi-Stage Progressive Image Restoration
-## Syed Waqas Zamir, Aditya Arora, Salman Khan, Munawar Hayat, Fahad Shahbaz Khan, Ming-Hsuan Yang, and Ling Shao
-## https://arxiv.org/abs/2102.02808
+## Restormer: Efficient Transformer for High-Resolution Image Restoration
+## Syed Waqas Zamir, Aditya Arora, Salman Khan, Munawar Hayat, Fahad Shahbaz Khan, and Ming-Hsuan Yang
+## https://arxiv.org/abs/2111.09881
 """
 
 import numpy as np
