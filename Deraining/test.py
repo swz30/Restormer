@@ -29,7 +29,7 @@ parser.add_argument('--weights', default='./pretrained_models/deraining.pth', ty
 args = parser.parse_args()
 
 ####### Load yaml #######
-yaml_file = 'Options/RealDenoising_Restormer.yml'
+yaml_file = 'Options/Deraining_Restormer.yml'
 import yaml
 
 try:
