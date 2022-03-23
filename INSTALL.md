@@ -37,13 +37,17 @@ curl -O https://storage.googleapis.com/golang/go1.11.1.linux-amd64.tar.gz
 mkdir -p ~/installed
 tar -C ~/installed -xzf go1.11.1.linux-amd64.tar.gz
 mkdir -p ~/go
-echo "export GOPATH=$HOME/go" >> ~/.bashrc
-echo "export PATH=$PATH:$HOME/go/bin:$HOME/installed/go/bin" >> ~/.bashrc
 ```
 
-2. Install `gdrive` using
+2. Add the lines in `~/.bashrc`
+```
+export GOPATH=$HOME/go
+export PATH=$PATH:$HOME/go/bin:$HOME/installed/go/bin
+```
+
+3. Install `gdrive` using
 ```
 go get github.com/prasmussen/gdrive
 ```
 
-3. Close current terminal and open a new terminal. 
+4. Close current terminal and open a new terminal. 
