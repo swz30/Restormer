@@ -10,7 +10,7 @@ num_set = length(datasets);
 
 for idx_set = 1:num_set
     file_path = strcat('./results/', datasets{idx_set}, '/');
-    gt_path = strcat('./Datasets/test/' datasets{idx_set}, '/target/');
+    gt_path = strcat('./Datasets/test/', datasets{idx_set}, '/target/');
     path_list = [dir(strcat(file_path,'*.jpg')); dir(strcat(file_path,'*.png'))];
     gt_list = [dir(strcat(gt_path,'*.jpg')); dir(strcat(gt_path,'*.png'))];
     img_num = length(path_list);
