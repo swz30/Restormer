@@ -8,6 +8,10 @@ close all;clear all;
 datasets = {'GoPro', 'HIDE'};
 num_set = length(datasets);
 
+tic
+delete(gcp('nocreate'))
+parpool('local',20);
+
 for idx_set = 1:num_set
     file_path = strcat('./results/', datasets{idx_set}, '/');
     gt_path = strcat('./Datasets/test/', datasets{idx_set}, '/target/');
@@ -18,7 +22,7 @@ for idx_set = 1:num_set
     total_psnr = 0;
     total_ssim = 0;
     if img_num > 0 
-        for j = 1:img_num 
+        parfor j = 1:img_num 
            image_name = path_list(j).name;
            gt_name = gt_list(j).name;
            input = imread(strcat(file_path,image_name));
@@ -35,3 +39,5 @@ for idx_set = 1:num_set
     fprintf('For %s dataset PSNR: %f SSIM: %f\n', datasets{idx_set}, qm_psnr, qm_ssim);
 
 end
+delete(gcp('nocreate'))
+toc
