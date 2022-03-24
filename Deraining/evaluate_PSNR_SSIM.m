@@ -3,14 +3,19 @@
 %% https://arxiv.org/abs/2111.09881
 
 
-clc;close all;clear all;addpath(genpath('./'));
+clc;close all;clear all;
 
 % datasets = {'Rain100L'};
-datasets = {'Rain100L', 'Rain100H', 'Test100', 'Test1200', 'Test2800'};
+datasets = {'Test100', 'Rain100H', 'Rain100L', 'Test2800', 'Test1200'};
 num_set = length(datasets);
 
 psnr_alldatasets = 0;
 ssim_alldatasets = 0;
+
+tic
+delete(gcp('nocreate'))
+parpool('local',20);
+
 for idx_set = 1:num_set
     file_path = strcat('./results/', datasets{idx_set}, '/');
     gt_path = strcat('./Datasets/test/', datasets{idx_set}, '/target/');
@@ -21,7 +26,7 @@ for idx_set = 1:num_set
     total_psnr = 0;
     total_ssim = 0;
     if img_num > 0 
-        for j = 1:img_num 
+        parfor j = 1:img_num 
            image_name = path_list(j).name;
            gt_name = gt_list(j).name;
            input = imread(strcat(file_path,image_name));
@@ -43,6 +48,9 @@ for idx_set = 1:num_set
 end
 
 fprintf('For all datasets PSNR: %f SSIM: %f\n', psnr_alldatasets/num_set, ssim_alldatasets/num_set);
+
+delete(gcp('nocreate'))
+toc
 
 function ssim_mean=compute_ssim(img1,img2)
     if size(img1, 3) == 3
