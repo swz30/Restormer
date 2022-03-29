@@ -15,7 +15,7 @@
 
 
 
-# Restormer: Efficient Transformer for High-Resolution Image Restoration (CVPR 2022)
+# Restormer: Efficient Transformer for High-Resolution Image Restoration (CVPR 2022 -- Oral)
 
 [Syed Waqas Zamir](https://scholar.google.es/citations?user=WNGPkVQAAAAJ&hl=en), [Aditya Arora](https://adityac8.github.io/), [Salman Khan](https://salman-h-khan.github.io/), [Munawar Hayat](https://scholar.google.com/citations?user=Mx8MbWYAAAAJ&hl=en), [Fahad Shahbaz Khan](https://scholar.google.es/citations?user=zvaeYnUAAAAJ&hl=en), and [Ming-Hsuan Yang](https://scholar.google.com/citations?user=p9-ohHsAAAAJ&hl=en)
 
@@ -24,6 +24,7 @@
 
 
 #### News
+- **March 29, 2022:** Restormer is an Oral presentation at CVPR 2022 :dizzy:
 - **March 10, 2022:** Training codes are released :fire:
 - **March 3, 2022:** Paper accepted at CVPR 2022 :tada: 
 - Testing codes and pre-trained models are released!
