@@ -24,10 +24,10 @@
 
 
 #### News
-- **March 29, 2022:** Restormer is an Oral presentation at CVPR 2022 :dizzy:
+- **March 29, 2022:** Restormer is selected for an ORAL presentation at CVPR 2022 :dizzy:
 - **March 10, 2022:** Training codes are released :fire:
 - **March 3, 2022:** Paper accepted at CVPR 2022 :tada: 
-- Testing codes and pre-trained models are released!
+- **Nov 21, 2021:** Testing codes and pre-trained models are released!
 
 <hr />
 
