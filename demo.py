@@ -103,8 +103,9 @@ img_multiple_of = 8
 
 print(f"\n ==> Running {task} with weights {weights}\n ")
 for file_ in tqdm(files):
-    torch.cuda.ipc_collect()
-    torch.cuda.empty_cache()
+    if torch.cuda.is_available():
+        torch.cuda.ipc_collect()
+        torch.cuda.empty_cache()
     if task == 'Gaussian_Gray_Denoising':
         img = load_gray_img(file_)
     else:
