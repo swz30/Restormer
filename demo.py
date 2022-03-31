@@ -91,7 +91,9 @@ weights, parameters = get_weights_and_parameters(task, parameters)
 
 load_arch = run_path(os.path.join('basicsr', 'models', 'archs', 'restormer_arch.py'))
 model = load_arch['Restormer'](**parameters)
-model.cuda()
+
+device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+model.to(device)
 
 checkpoint = torch.load(weights)
 model.load_state_dict(checkpoint['params'])
@@ -108,7 +110,7 @@ for file_ in tqdm(files):
     else:
         img = load_img(file_)
 
-    input_ = torch.from_numpy(img).float().div(255.).permute(2,0,1).unsqueeze(0).cuda()
+    input_ = torch.from_numpy(img).float().div(255.).permute(2,0,1).unsqueeze(0).to(device)
 
     # Pad the input if not_multiple_of 8
     h,w = input_.shape[2], input_.shape[3]
