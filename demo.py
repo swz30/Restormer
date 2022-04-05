@@ -6,6 +6,7 @@
 ##------- Demo file to test Restormer on your own images---------
 ## Example usage on directory containing several images:   python demo.py --task Single_Image_Defocus_Deblurring --input_dir './demo/degraded/' --result_dir './demo/restored/'
 ## Example usage on a image directly: python demo.py --task Single_Image_Defocus_Deblurring --input_dir './demo/degraded/portrait.jpg' --result_dir './demo/restored/'
+## Example usage with tile option on a large image: python demo.py --task Single_Image_Defocus_Deblurring --input_dir './demo/degraded/portrait.jpg' --result_dir './demo/restored/' --tile 720 --tile_overlap 32
 ##--------------------------------------------------------------
 
 import torch
@@ -31,6 +32,8 @@ parser.add_argument('--task', required=True, type=str, help='Task to run', choic
                                                                                     'Real_Denoising',
                                                                                     'Gaussian_Gray_Denoising',
                                                                                     'Gaussian_Color_Denoising'])
+parser.add_argument('--tile', type=int, default=None, help='Tile size (e.g 720). None means testing on the original resolution image')
+parser.add_argument('--tile_overlap', type=int, default=32, help='Overlapping of different tiles')
 
 args = parser.parse_args()
 
@@ -102,39 +105,66 @@ model.eval()
 img_multiple_of = 8
 
 print(f"\n ==> Running {task} with weights {weights}\n ")
-for file_ in tqdm(files):
-    if torch.cuda.is_available():
-        torch.cuda.ipc_collect()
-        torch.cuda.empty_cache()
-    if task == 'Gaussian_Gray_Denoising':
-        img = load_gray_img(file_)
-    else:
-        img = load_img(file_)
 
-    input_ = torch.from_numpy(img).float().div(255.).permute(2,0,1).unsqueeze(0).to(device)
+with torch.no_grad():
+    for file_ in tqdm(files):
+        if torch.cuda.is_available():
+            torch.cuda.ipc_collect()
+            torch.cuda.empty_cache()
 
-    # Pad the input if not_multiple_of 8
-    h,w = input_.shape[2], input_.shape[3]
-    H,W = ((h+img_multiple_of)//img_multiple_of)*img_multiple_of, ((w+img_multiple_of)//img_multiple_of)*img_multiple_of
-    padh = H-h if h%img_multiple_of!=0 else 0
-    padw = W-w if w%img_multiple_of!=0 else 0
-    input_ = F.pad(input_, (0,padw,0,padh), 'reflect')
+        if task == 'Gaussian_Gray_Denoising':
+            img = load_gray_img(file_)
+        else:
+            img = load_img(file_)
 
-    with torch.no_grad():
-        restored = model(input_)
-    restored = torch.clamp(restored, 0, 1)
+        input_ = torch.from_numpy(img).float().div(255.).permute(2,0,1).unsqueeze(0).to(device)
 
-    # Unpad the output
-    restored = restored[:,:,:h,:w]
+        # Pad the input if not_multiple_of 8
+        height,width = input_.shape[2], input_.shape[3]
+        H,W = ((height+img_multiple_of)//img_multiple_of)*img_multiple_of, ((width+img_multiple_of)//img_multiple_of)*img_multiple_of
+        padh = H-height if height%img_multiple_of!=0 else 0
+        padw = W-width if width%img_multiple_of!=0 else 0
+        input_ = F.pad(input_, (0,padw,0,padh), 'reflect')
 
-    restored = restored.permute(0, 2, 3, 1).cpu().detach().numpy()
-    restored = img_as_ubyte(restored[0])
+        if args.tile is None:
+            ## Testing on the original resolution image
+            restored = model(input_)
+        else:
+            # test the image tile by tile
+            b, c, h, w = input_.shape
+            tile = min(args.tile, h, w)
+            assert tile % 8 == 0, "tile size should be multiple of 8"
+            tile_overlap = args.tile_overlap
 
-    f = os.path.splitext(os.path.split(file_)[-1])[0]
-    # stx()
-    if task == 'Gaussian_Gray_Denoising':
-        save_gray_img((os.path.join(out_dir, f+'.png')), restored)
-    else:
-        save_img((os.path.join(out_dir, f+'.png')), restored)
+            stride = tile - tile_overlap
+            h_idx_list = list(range(0, h-tile, stride)) + [h-tile]
+            w_idx_list = list(range(0, w-tile, stride)) + [w-tile]
+            E = torch.zeros(b, c, h, w).type_as(input_)
+            W = torch.zeros_like(E)
 
-print(f"\nRestored images are saved at {out_dir}")
+            for h_idx in h_idx_list:
+                for w_idx in w_idx_list:
+                    in_patch = input_[..., h_idx:h_idx+tile, w_idx:w_idx+tile]
+                    out_patch = model(in_patch)
+                    out_patch_mask = torch.ones_like(out_patch)
+
+                    E[..., h_idx:(h_idx+tile), w_idx:(w_idx+tile)].add_(out_patch)
+                    W[..., h_idx:(h_idx+tile), w_idx:(w_idx+tile)].add_(out_patch_mask)
+            restored = E.div_(W)
+
+        restored = torch.clamp(restored, 0, 1)
+
+        # Unpad the output
+        restored = restored[:,:,:height,:width]
+
+        restored = restored.permute(0, 2, 3, 1).cpu().detach().numpy()
+        restored = img_as_ubyte(restored[0])
+
+        f = os.path.splitext(os.path.split(file_)[-1])[0]
+        # stx()
+        if task == 'Gaussian_Gray_Denoising':
+            save_gray_img((os.path.join(out_dir, f+'.png')), restored)
+        else:
+            save_img((os.path.join(out_dir, f+'.png')), restored)
+
+    print(f"\nRestored images are saved at {out_dir}")
