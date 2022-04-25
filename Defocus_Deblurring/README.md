@@ -5,6 +5,11 @@
 python download_data.py --data train
 ```
 
+- Generate image patches from full-resolution training images, run
+```
+python generate_patches_dpdd.py 
+```
+
 - To train Restormer on **single-image** defocus deblurring task, run
 ```
 cd Restormer
