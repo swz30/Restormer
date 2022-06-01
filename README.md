@@ -21,6 +21,9 @@
 
 [![paper](https://img.shields.io/badge/arXiv-Paper-<COLOR>.svg)](https://arxiv.org/abs/2111.09881)
 [![supplement](https://img.shields.io/badge/Supplementary-Material-red)](https://drive.google.com/file/d/1oKGON8vG4uDWMmZKqHeTMnFowhOubifK/view?usp=sharing)
+[![video](https://img.shields.io/badge/Video-Presentation-F9D371)](https://www.youtube.com/watch?v=3mqu6N4_0pY&t)
+[![slides](https://img.shields.io/badge/Presentation-Slides-B762C1)](https://drive.google.com/file/d/19wKhnQtr3mcD6IsLj0ZFSwCgIRKUkDQJ/view?usp=sharing)
+[![Summary](https://img.shields.io/badge/Summary-Slide-87CEEB)](https://drive.google.com/file/d/1wyKAMLzJpDqHiF6AMsmnmGQC241GyT8q/view?usp=sharing)
 
 
 #### News
